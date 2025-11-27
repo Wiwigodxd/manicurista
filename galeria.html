@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Galería - [Tu Nombre]</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+    font-family:'Poppins',sans-serif;
+    background:#0d0d0d;
+    color:#eee;
+}
+
+/* HEADER */
+header{
+    background:#111;
+    padding:30px 20px;
+    text-align:center;
+    border-bottom:1px solid #222;
+    box-shadow:0 0 15px rgba(255,0,90,0.35);
+}
+header h1{
+    font-size:2.3rem;
+    color:#ff4fa3;
+    text-shadow:0 0 12px #ff4fa3;
+    font-weight:700;
+}
+
+/* NAV */
+nav{
+    margin-top:15px;
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:18px;
+}
+nav a{
+    padding:10px 20px;
+    color:#eee;
+    border:1px solid #ff4fa3;
+    border-radius:25px;
+    background:#222;
+    transition:0.3s;
+    box-shadow:0 0 12px rgba(255,80,160,0.4);
+}
+nav a:hover{
+    background:#ff4fa3;
+    color:white;
+    box-shadow:0 0 18px #ff4fa3;
+}
+
+/* SECTION */
+section{
+    padding:60px 20px;
+    text-align:center;
+}
+section h2{
+    font-size:2rem;
+    color:#ff4fa3;
+    margin-bottom:15px;
+    text-shadow:0 0 10px #ff4fa3;
+}
+section p{
+    max-width:650px;
+    margin:auto;
+    color:#ccc;
+    margin-bottom:35px;
+}
+
+/* Carrusel */
+.carrusel-container{
+    position:relative;
+    width:90%;
+    max-width:700px;
+    margin:0 auto;
+    overflow:hidden;
+    border-radius:20px;
+    box-shadow:0 0 20px rgba(255,0,100,0.35);
+}
+.carrusel-slide{
+    display:flex;
+    transition:transform 0.6s ease-in-out;
+}
+.carrusel-slide img{
+    width:100%;
+    flex-shrink:0;
+    border-radius:20px;
+}
+
+/* Botones */
+.prev,.next{
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    background-color:rgba(255,79,163,0.8);
+    color:white;
+    border:none;
+    padding:14px;
+    border-radius:50%;
+    cursor:pointer;
+    font-size:28px;
+    z-index:10;
+    transition:0.3s;
+    box-shadow:0 0 10px rgba(255,79,163,0.8);
+}
+.prev:hover,.next:hover{
+    background-color:#ff4fa3;
+    box-shadow:0 0 15px #ff4fa3;
+}
+.prev{left:15px;}
+.next{right:15px;}
+
+/* FOOTER */
+footer{
+    background:#111;
+    margin-top:60px;
+    padding:25px 20px;
+    text-align:center;
+    border-top:1px solid #222;
+    color:#aaa;
+}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+    header h1{font-size:2rem;}
+    .prev,.next{padding:10px;font-size:22px;}
+}
+
+@media(max-width:480px){
+    header h1{font-size:1.7rem;}
+    .prev,.next{padding:8px;font-size:20px;}
+    .carrusel-container{width:95%;}
+}
+</style>
+</head>
+<body>
+
+<header>
+<h1>[Tu Nombre]</h1>
+<nav>
+    <a href="index.html">Inicio</a>
+    <a href="servicios.html">Servicios</a>
+    <a href="galeria.html">Galería</a>
+    <a href="contacto.html">Contacto</a>
+</nav>
+</header>
+
+<section>
+<h2>Galería de Uñas</h2>
+<p>Algunos de nuestros trabajos más recientes 💅✨</p>
+
+<div class="carrusel-container">
+    <div class="carrusel-slide">
+        <img src="https://images.pexels.com/photos/225406/pexels-photo-225406.jpeg" alt="Uñas 1">
+        <img src="https://images.pexels.com/photos/461428/pexels-photo-461428.jpeg" alt="Uñas 2">
+        <img src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg" alt="Uñas 3">
+    </div>
+
+    <button class="prev">&#10094;</button>
+    <button class="next">&#10095;</button>
+</div>
+
+</section>
+
+<footer>
+<p>© 2025 [Tu Nombre] - Manicurista Profesional</p>
+</footer>
+
+<script>
+const slide=document.querySelector('.carrusel-slide');
+const images=document.querySelectorAll('.carrusel-slide img');
+const prevBtn=document.querySelector('.prev');
+const nextBtn=document.querySelector('.next');
+let counter=0;
+
+function showSlide(index){
+    if(index<0) counter=images.length-1;
+    else if(index>=images.length) counter=0;
+    else counter=index;
+
+    slide.style.transform='translateX(' + (-counter * 100) + '%)';
+}
+
+prevBtn.addEventListener('click',()=>showSlide(counter-1));
+nextBtn.addEventListener('click',()=>showSlide(counter+1));
+
+setInterval(()=>{ showSlide(counter+1); },4000);
+</script>
+
+</body>
+</html>
