@@ -22,6 +22,7 @@
         text-align:center;
         border-bottom:1px solid #222;
         box-shadow:0 0 15px rgba(255,0,90,0.3);
+        position:relative;
     }
     header h1{
         font-size:2.4rem;
@@ -104,7 +105,45 @@
         font-size:0.9rem;
     }
 
-    /* 📱📱 RESPONSIVE DESIGN */
+    /* BOTÓN HAMBURGUESA */
+    .hamburger{
+        position:absolute;
+        left:20px;
+        top:20px;
+        width:35px;
+        cursor:pointer;
+        display:none; /* se activa solo en móviles */
+    }
+    .hamburger span{
+        display:block;
+        height:4px;
+        background:white;
+        margin:6px 0;
+        border-radius:2px;
+    }
+
+    /* MENU MÓVIL */
+    @media(max-width:768px){
+
+        .hamburger{
+            display:block;
+            z-index:999;
+        }
+
+        nav{
+            display:none;
+            flex-direction:column;
+            background:#111;
+            padding:20px 0;
+            margin-top:20px;
+        }
+
+        nav.show{
+            display:flex;
+        }
+    }
+
+    /* RESPONSIVE */
     @media(max-width:768px){
         header h1{ font-size:2rem; }
         header p{ font-size:1rem; }
@@ -120,54 +159,42 @@
     }
 
     @media(max-width:480px){
-        header{
-            padding:28px 10px;
-        }
-        header h1{
-            font-size:1.6rem;
-        }
-        header p{
-            font-size:0.9rem;
-        }
+        header{ padding:28px 10px; }
+        header h1{ font-size:1.6rem; }
+        header p{ font-size:0.9rem; }
 
-        nav{
-            gap:12px;
-        }
-        nav a{
-            padding:8px 15px;
-            font-size:0.85rem;
-        }
+        nav{ gap:12px; }
+        nav a{ padding:8px 15px; font-size:0.85rem; }
 
-        .hero{
-            padding:55px 15px;
-        }
-        .hero h2{
-            font-size:1.6rem;
-        }
-        .hero p{
-            font-size:0.95rem;
-        }
-        .btn{
-            padding:10px 25px;
-            font-size:0.9rem;
-        }
-        footer{
-            font-size:0.8rem;
-        }
+        .hero{ padding:55px 15px; }
+        .hero h2{ font-size:1.6rem; }
+        .hero p{ font-size:0.95rem; }
+        .btn{ padding:10px 25px; font-size:0.9rem; }
+        footer{ font-size:0.8rem; }
     }
 </style>
 </head>
 <body>
 
 <header>
+
+<!-- BOTÓN HAMBURGUESA -->
+<div class="hamburger" onclick="toggleMenu()">
+    <span></span>
+    <span></span>
+    <span></span>
+</div>
+
 <h1>Bienvenida a [Tu Nombre]</h1>
 <p>Manicurista profesional para uñas perfectas y únicas</p>
+
 <nav>
-<a href="index.html">Inicio</a>
-<a href="servicios.html">Servicios</a>
-<a href="galeria.html">Galería</a>
-<a href="contacto.html">Contacto</a>
+    <a href="index.html">Inicio</a>
+    <a href="servicios.html">Servicios</a>
+    <a href="galeria.html">Galería</a>
+    <a href="contacto.html">Contacto</a>
 </nav>
+
 </header>
 
 <section class="hero">
@@ -179,6 +206,12 @@
 <footer>
 <p>© 2025 [Tu Nombre] - Manicurista Profesional</p>
 </footer>
+
+<script>
+function toggleMenu(){
+    document.querySelector("nav").classList.toggle("show");
+}
+</script>
 
 </body>
 </html>
